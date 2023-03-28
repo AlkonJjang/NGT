@@ -3,39 +3,27 @@ using namespace std;
 
 int main()
 {
-	int n, m, k, num1 = 0, s = 0, M = 0;
-	cin >> n >> m;
+	int sum = 0, i, j;
+	int arr[9];
 
-	char arr[51][51];
-	for (int i = 0; i < n; i++)
+	for (i = 0; i < 9; i++)
 	{
-		for (int j = 0; j < m; j++)
-		{
-			cin >> arr[i][j];
-			arr[i][j] -= 48;
-		}
+		cin >> arr[i];
+		sum += arr[i];
 	}
-	cin >> k;
-	for (int i = 0; i < n; i++)
+	for (i = 0; i < 9; i++)
 	{
-		num1 = 0, s = 0;
-		for (int j = 0; j < m; j++) 
+		for (j = i + 1; j < 9; j++)
 		{
-			num1 += arr[i][j]; 
-		}
-		if ((m - num1) <= k && (m - num1 - k) % 2 == 0)
-		{
-			for (int a = i; a < n; a++)
+			if ((sum - arr[i] - arr[j]) == 100)
 			{
-				int c=0;
-				for (int b = 0; b < m; b++)
+				for (int a = 0; a < 9; a++)
 				{
-					if (arr[i][b] != arr[a][b]) { c++; }
+					if (a != i && a != j)
+						cout << arr[a] << '\n';
 				}
-				if (c == 0) s++;
+				return 0;
 			}
 		}
-		M = (M > s) ? M : s;
 	}
-	cout << M;
 }
